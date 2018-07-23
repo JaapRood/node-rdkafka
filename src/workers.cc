@@ -528,8 +528,6 @@ void KafkaConsumerConsumeNum::Execute() {
     Baton b = m_consumer->Consume(m_timeout_ms);
     switch (b.err()) {
       case RdKafka::ERR__PARTITION_EOF:
-        // If we reached the end of the partition, retry
-        break;
       case RdKafka::ERR__TIMED_OUT:
       case RdKafka::ERR__TIMED_OUT_QUEUE:
         // Break of the loop if we timed out
